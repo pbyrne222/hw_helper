@@ -1,14 +1,6 @@
 Rails.application.routes.draw do
-  get 'problems/index'
-
-  get 'problems/new'
-
-  get 'problems/create'
-
-  get 'problems/show'
 
   devise_for :users
-
 
   resources :problems, only: [:index, :new, :create, :show] do
     resources :notes, only: :create, shallow: true
