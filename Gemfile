@@ -30,11 +30,20 @@ gem 'spring',        group: :development
 gem "letter_opener", :group => :development
 gem "rails_12factor", group: :production
 
+gem "faker"
+
+group :development, :test do
+	gem "better_errors"
+	gem "binding_of_caller"
+	gem "pry-rails"
+end
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

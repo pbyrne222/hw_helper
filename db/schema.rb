@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024175146) do
+ActiveRecord::Schema.define(version: 20141024193941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notes", force: true do |t|
+    t.integer  "problem_id"
+    t.integer  "user_id"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notes", ["problem_id"], name: "index_notes_on_problem_id", using: :btree
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
+
+  create_table "problems", force: true do |t|
+    t.text     "description"
+    t.text     "history"
+    t.integer  "user_id"
+    t.boolean  "resolved"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "problems", ["user_id"], name: "index_problems_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

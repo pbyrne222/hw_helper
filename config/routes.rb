@@ -1,10 +1,24 @@
 Rails.application.routes.draw do
+  get 'problems/index'
+
+  get 'problems/new'
+
+  get 'problems/create'
+
+  get 'problems/show'
+
   devise_for :users
+
+
+  resources :problems, only: [:index, :new, :create, :show] do
+    resources :notes, only: :create, shallow: true
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  root 'problems#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
