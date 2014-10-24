@@ -5,4 +5,5 @@ class Problem < ActiveRecord::Base
   validates :description, presence: true
   validates :history, presence: true
   validates :user, presence: true
+
 end
