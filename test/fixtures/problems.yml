@@ -3,11 +3,11 @@
 one:
   description: MyString
   history: MyString
-  user_id: 
+  user_id: 1
   resolved: false
 
 two:
   description: MyString
   history: MyString
-  user_id: 
+  user_id: 2
   resolved: false
