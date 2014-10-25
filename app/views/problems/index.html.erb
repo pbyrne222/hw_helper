@@ -3,7 +3,9 @@
 
 <% @problems.each do |problem| %>
     <div>
-      <h2><%= problem.description %></h2>
+      <h2><%= link_to <%= problem.description %></h2>
+      <div><%= problem.user.name %></div>
+      <div><%= problem.created_at %></div>
       <div><%= problem.history %></div>
     </div>
 <% end %>

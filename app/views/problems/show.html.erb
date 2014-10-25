@@ -1,2 +1,16 @@
-<h1>Problems#show</h1>
-<p>Find me in app/views/problems/show.html.erb</p>
+<h1><%= @problem.description %></h1>
+<p><%= @problem.history %></p>
+<p><%= @problem.user.name %></p>
+<p><%= @problem.created_at %></p>
+
+
+<% @notes.each do |note| %>
+    <div>
+      <h2><%= note.description %></h2>
+      <div><%= note.user.name %></div>
+      <div><%= note.created_at %></div>
+      <div><%= note.history %></div>
+    </div>
+<% end %>
+
+<%= paginate @notes %>
