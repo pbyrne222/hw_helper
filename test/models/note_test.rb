@@ -11,7 +11,7 @@ class NoteTest < ActiveSupport::TestCase
 
 	context "a note" do
 
-		
+
 
 	end
 end

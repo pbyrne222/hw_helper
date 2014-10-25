@@ -4,4 +4,8 @@ class Note < ActiveRecord::Base
 
   before_create :authenticate_user!
 
+  validates :text, presence: true
+  validates :user, presence: true
+  validates :problem, presence: true
+
 end
