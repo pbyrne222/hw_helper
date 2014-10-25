@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'notes/create'
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :problems, only: [:index, :new, :create, :show] do
     resources :notes, only: :create, shallow: true
