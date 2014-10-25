@@ -1,4 +1,11 @@
 <h1>Homework Helper</h1>
 
 
-<p>Find me in app/views/problems/index.html.erb</p>
+<% @problems.each do |problem| %>
+    <div>
+      <h2><%= problem.description %></h2>
+      <div><%= problem.history %></div>
+    </div>
+<% end %>
+
+<%= paginate @problems %>
