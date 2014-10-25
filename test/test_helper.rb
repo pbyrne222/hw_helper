@@ -6,7 +6,7 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  def logged_in_session
+  def signed_in_session
 	  { current_user_id: users(:one).id }
   end
   # Add more helper methods to be used by all tests here...

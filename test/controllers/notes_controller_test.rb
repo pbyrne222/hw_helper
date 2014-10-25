@@ -24,9 +24,10 @@ class NotesControllerTest < ActionController::TestCase
 		end
 
 		context "when logged in" do
+			setup { sign_in @user }
 			context "with invalid data" do
 				setup do
-					post :create, { problem_id: problems(:one).id, note: invalid_note_data }, logged_in_session
+					post :create, { problem_id: problems(:one).id, note: invalid_note_data }, signed_in_session
 				end
 
 				should render_template("problems/show")
@@ -38,7 +39,7 @@ class NotesControllerTest < ActionController::TestCase
 
 			context "with valid data" do
 				setup do
-					post :create, { problem_id: problems(:one).id, note: valid_note_data }, logged_in_session
+					post :create, { problem_id: problems(:one).id, note: valid_note_data }, signed_in_session
 				end
 
 				should "create an note" do

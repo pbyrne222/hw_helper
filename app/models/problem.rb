@@ -6,4 +6,8 @@ class Problem < ActiveRecord::Base
   validates :history, presence: true
   validates :user, presence: true
 
+	def resolved?
+		resolved = :false
+	end
+
 end
