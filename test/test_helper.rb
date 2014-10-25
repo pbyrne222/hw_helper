@@ -11,4 +11,14 @@ end
 
 class ActionController::TestCase
   include Devise::TestHelpers
+
+	def assert_invalid_model(model_name)
+		assert assigns[model_name], "Should have a #{model_name}"
+		assert assigns[model_name].invalid?, "Should have an invalid #{model_name}"
+	end
+
+	def assert_saved_model(model_name)
+		assert assigns[model_name], "Should have a #{model_name}"
+		assert assigns[model_name].persisted?, "#{model_name} should be persisted"
+	end
 end

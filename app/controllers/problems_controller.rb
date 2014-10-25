@@ -1,5 +1,5 @@
 class ProblemsController < ApplicationController
-  before_action :authenticate, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_problem, only: [:show]
 
   def index
@@ -14,7 +14,7 @@ class ProblemsController < ApplicationController
     @problem = current_user.problems.build(problem_params)
 
     if @problem.save
-      redirect_to @problem, success: "Your problem has been created."
+      redirect_to @problem, success: "Your problem has been posted."
     else
       render :new
     end
@@ -34,3 +34,4 @@ class ProblemsController < ApplicationController
     params.require(:problem).permit(:description, :history, :resolved)
   end
 end
+

@@ -13,6 +13,10 @@ class ProblemsControllerTest < ActionController::TestCase
                   resolved: false } }
   end
 
+  def setup
+	  @user = User.create!({:email => "guy@gmail.com", :password => "11111178", :password_confirmation => "11111178" })
+  end
+
   context "GET problems#index" do
     setup { get :index }
 
@@ -46,7 +50,8 @@ class ProblemsControllerTest < ActionController::TestCase
 
     context "when logged in" do
       setup do
-        get :new, {}, new_problem_path
+	      sign_in @user
+        get :new
       end
 
       should render_template("new")
@@ -60,7 +65,7 @@ class ProblemsControllerTest < ActionController::TestCase
 
  context "POST problems#create" do
     context "when not logged in" do
-      setup { post :create }
+      setup { post :create, valid_problem_data }
 
       should "redirect to login" do
         assert_redirected_to new_user_session_path
@@ -68,9 +73,10 @@ class ProblemsControllerTest < ActionController::TestCase
     end
 
     context "when logged in" do
+	    setup { sign_in @user }
       context "with invalid data" do
         setup do
-          post :create, invalid_problem_data, new_problem_path
+          post :create, invalid_problem_data
         end
 
         should render_template(:new)
@@ -82,7 +88,7 @@ class ProblemsControllerTest < ActionController::TestCase
 
       context "with valid data" do
         setup do
-          post :create, valid_problem_data, root_path
+          post :create, valid_problem_data
         end
 
         should "create a problem" do
@@ -90,7 +96,7 @@ class ProblemsControllerTest < ActionController::TestCase
         end
 
         should "redirect to problem" do
-          assert_redirected_to root_path(assigns[:problem])
+          assert_redirected_to problem_path(assigns[:problem])
         end
       end
     end
