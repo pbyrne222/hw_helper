@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'notes/create'
+
   devise_for :users
 
   resources :problems, only: [:index, :new, :create, :show] do
