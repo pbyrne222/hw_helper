@@ -29,7 +29,13 @@ other_users = Array.new(10).map { |_| User.create!(name:                  Faker:
 	                    password_confirmation: "password")
 
 	rand(2..5).times do
-		Problem.create!(description: "#{['I keep getting stuck on the', 'Can someone explain why a', 'Why would the'].sample} #{Faker::Company.catch_phrase.downcase}?",
+		Problem.create!(description: "#{["I'm wondering how the",
+		                                 'Can someone explain why a',
+		                                 'Why would the'].sample}
+																	#{Faker::Company.catch_phrase.downcase}
+																	#{['keeps breaking',
+																	   "won't work",
+																	   'is stuck in a loop'].sample}?",
 		                history:  Faker::Lorem.paragraph(sentence_count=10, supplemental=false, random_sentences_to_add=3),
 		                user:  user,
 		                created_at: rand(1.year).ago,)

@@ -9,7 +9,7 @@ class NotesController < ApplicationController
 		if @note.save
 			redirect_to problem_path(@problem)
 		else
-			render "problems/show"
+			render "problems/show", alert: "Your note did not save."
 		end
 	end
 

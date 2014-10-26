@@ -13,6 +13,8 @@
           <%= f.label 'What you have tried so far:' %>
           <%= f.text_area :history %>
 
+          <%= f.hidden_field :resolved, :value => false %>
+
           <%= button_tag 'Post Problem' %>
         </fieldset>
 
