@@ -2,7 +2,6 @@ class ProblemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update]
   before_action :set_problem, only: [:show, :update]
 
-
   def index
     @problems = Problem.order(created_at: :desc).page params[:page]
   end

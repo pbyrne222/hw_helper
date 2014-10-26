@@ -17,7 +17,11 @@ private
 
 	def notify_author
 		if different_from_problem_author?
+<<<<<<< HEAD
 			#send the email
+=======
+			send_email
+>>>>>>> e2953e27398a4207624607d89fe064ac3f6b55d3
 		end
 	end
 
