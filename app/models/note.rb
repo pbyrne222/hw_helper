@@ -17,8 +17,7 @@ private
 
 	def notify_author
 		if different_from_problem_author?
-			binding.pry
-			#send the email
+			send_email
 		end
 	end
 
