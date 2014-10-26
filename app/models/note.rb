@@ -6,4 +6,10 @@ class Note < ActiveRecord::Base
   validates :user, presence: true
   validates :problem, presence: true
 
+  def send_email
+    if self.user != self.problem.user
+      UserMailer.new_note(self.id).deliver
+    end
+  end
+
 end
