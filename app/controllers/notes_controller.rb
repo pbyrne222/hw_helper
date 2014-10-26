@@ -6,7 +6,7 @@ class NotesController < ApplicationController
 		@note = @problem.notes.build(note_params)
 		@note.user = current_user
 
-		if @note.save
+		if @note.save_and_notify
 			redirect_to problem_path(@problem)
 		else
 			render "problems/show", alert: "Your note did not save."

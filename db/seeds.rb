@@ -23,22 +23,23 @@ other_users = Array.new(10).map { |_| User.create!(name:                  Faker:
 
 
 10.times do
-	user = User.create!(name: Faker::Name.name,
-	                    email: Faker::Internet.free_email,
-	                    password: "password",
-	                    password_confirmation: "password")
+	user = User.create!(name:                   Faker::Name.name,
+	                    email:                  Faker::Internet.free_email,
+	                    password:               "password",
+	                    password_confirmation:  "password")
 
 	rand(2..5).times do
-		Problem.create!(description: "#{["I'm wondering how the",
+		Problem.create!(description: "#{["Anyone know why the",
 		                                 'Can someone explain why a',
-		                                 'Why would the'].sample}
+		                                 "I don't understand why the"].sample}
 																	#{Faker::Company.catch_phrase.downcase}
 																	#{['keeps breaking',
 																	   "won't work",
 																	   'is stuck in a loop'].sample}?",
-		                history:  Faker::Lorem.paragraph(sentence_count=10, supplemental=false, random_sentences_to_add=3),
-		                user:  user,
-		                created_at: rand(1.year).ago,)
+		                history:      Faker::Lorem.paragraph(sentence_count=10, supplemental=false, random_sentences_to_add=3),
+		                user:         user,
+		                resolved:     false,
+		                created_at:   rand(1.year).ago,)
 	end
 end
 
@@ -47,7 +48,7 @@ users = User.all.pluck("id")
 
 problems.each do |problem|
 	rand(0..5).times do
-	problem.notes.create!(text:     Faker::Hacker.say_something_smart,
-	                      user:     User.find(users.sample))
+	problem.notes.create!(text: Faker::Hacker.say_something_smart,
+	                      user: User.find(users.sample))
 	end
 end

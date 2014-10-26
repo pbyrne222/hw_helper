@@ -1,6 +1,8 @@
 class ProblemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-  before_action :set_problem, only: [:show]
+  before_action :authenticate_user!, only: [:new, :create, :update]
+  before_action :set_problem, only: [:show, :update]
+
+
 
   def index
     @problems = Problem.order(created_at: :desc).page params[:page]
@@ -18,6 +20,14 @@ class ProblemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+		if problem_params[:resolved] == "true"
+	    @problem.resolved = true
+	    @problem.save
+	    redirect_to problems_path
+		end
   end
 
   def show

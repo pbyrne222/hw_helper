@@ -6,4 +6,23 @@ class Note < ActiveRecord::Base
   validates :user, presence: true
   validates :problem, presence: true
 
+
+	def save_and_notify
+		save
+		notify_author
+	end
+
+
+private
+
+	def notify_author
+		if different_from_problem_author?
+			binding.pry
+			#send the email
+		end
+	end
+
+  def different_from_problem_author?
+		self.user != self.problem.user
+  end
 end

@@ -8,12 +8,5 @@ class Problem < ActiveRecord::Base
 
   paginates_per 5
 
-	def open
-		where(resolved: :false)
-	end
-
-  def close
-	  where(resolved: :true)
-  end
 
 end

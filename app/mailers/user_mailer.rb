@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
   def create_mail(user_id, msg)
     @user = User.find(user_id)
     @greeting = "Hello #{@user.name}"
-    mail to: @user.email, subject: msg
+    mail to: @user.email, subject: "msg"
   end
 
 end
