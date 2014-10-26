@@ -16,4 +16,8 @@ class Problem < ActiveRecord::Base
 	  where(resolved: :true)
   end
 
+  def send_email
+   UserMailer.new_problem(self.id).deliver
+  end
+
 end
