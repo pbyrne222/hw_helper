@@ -3,7 +3,6 @@ class ProblemsController < ApplicationController
   before_action :set_problem, only: [:show, :update]
 
 
-
   def index
     @problems = Problem.order(created_at: :desc).page params[:page]
   end
@@ -44,4 +43,3 @@ class ProblemsController < ApplicationController
     params.require(:problem).permit(:description, :history, :resolved)
   end
 end
-
