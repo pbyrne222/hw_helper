@@ -11,7 +11,7 @@ User.delete_all
 Problem.delete_all
 Note.delete_all
 
-user = User.create!(name:                  "Admin",
+user = User.create!(name:                  Faker::Name.name,
                     email:                 "user@example.org",
                     password:              "password",
                     password_confirmation: "password")
