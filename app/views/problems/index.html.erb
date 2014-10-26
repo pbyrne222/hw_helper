@@ -1,12 +1,13 @@
 <h1>Homework Helper</h1>
-
+<h2>Open Problems</h2>
 
 <% @problems.each do |problem| %>
     <div>
-      <h2><%= link_to <%= problem.description %></h2>
+
+      <h3><%= link_to problem.description, problem_path(problem) %></h3>
       <div><%= problem.user.name %></div>
       <div><%= problem.created_at %></div>
-      <div><%= problem.history %></div>
+      <div><%= problem.history.truncate(100) %></div>
     </div>
 <% end %>
 

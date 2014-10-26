@@ -4,13 +4,38 @@
 <p><%= @problem.created_at %></p>
 
 
-<% @notes.each do |note| %>
-    <div>
-      <h2><%= note.description %></h2>
-      <div><%= note.user.name %></div>
-      <div><%= note.created_at %></div>
-      <div><%= note.history %></div>
-    </div>
+<% if @notes %>
+    <% @notes.each do |note| %>
+        <div>
+          <h2><%= note.description %></h2>
+          <div><%= note.user.name %></div>
+          <div><%= note.created_at %></div>
+          <div><%= note.history %></div>
+        </div>
+    <% end %>
+<% else %>
+    <% if !@notes %>
+        <p>
+          No notes yet.
+        </p>
+    <% end %>
+
 <% end %>
 
-<%= paginate @notes %>
+
+<% if user_signed_in? %>
+    <%= form_for([@problem, @problem.notes.build]) do |f| %>
+        <fieldset>
+
+          <legend>Any thoughts?</legend>
+
+          <%= f.label 'Note' %>
+          <%= f.text_area :text %>
+
+          <%= button_tag 'Add Note' %>
+
+        </fieldset>
+    <% end %>
+<% else %>
+    <%= link_to 'Log in to leave a note', new_user_session_path %>
+<% end %>

@@ -6,8 +6,14 @@ class Problem < ActiveRecord::Base
   validates :history, presence: true
   validates :user, presence: true
 
-	def resolved?
-		resolved = :false
+  paginates_per 5
+
+	def open
+		where(resolved: :false)
 	end
+
+  def close
+	  where(resolved: :true)
+  end
 
 end

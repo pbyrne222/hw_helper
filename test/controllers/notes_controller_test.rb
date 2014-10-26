@@ -11,7 +11,7 @@ class NotesControllerTest < ActionController::TestCase
 	end
 
 	def setup
-		@user = User.create!({:email => "guy@gmail.com", :password => "11111178", :password_confirmation => "11111178" })
+		@user = User.create!({:name => "demodude", :email => "guy@gmail.com", :password => "11111178", :password_confirmation => "11111178" })
 	end
 
 	context "POST notes#create" do

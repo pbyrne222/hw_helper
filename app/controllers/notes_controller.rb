@@ -3,11 +3,11 @@ class NotesController < ApplicationController
 
 	def create
 		@problem = Problem.find(params[:problem_id])
-		@note = @problem.notes.build(answer_params)
+		@note = @problem.notes.build(note_params)
 		@note.user = current_user
 
 		if @note.save
-			redirect_to @problem
+			redirect_to problem_path(@problem)
 		else
 			render "problems/show"
 		end
@@ -15,7 +15,7 @@ class NotesController < ApplicationController
 
 	private
 
-	def answer_params
+	def note_params
 		params.require(:note).permit(:text)
 	end
 
