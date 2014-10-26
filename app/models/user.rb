@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 	has_many :problems
 	has_many :notes
 
-
+  include Gravtastic
+  gravtastic  :default => 'identicon',
+	            :size => 45
 
 end

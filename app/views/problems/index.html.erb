@@ -1,12 +1,13 @@
-<h1>Homework Helper</h1>
+<h1>Open Problems</h1>
 
-
-<% @problems.each do |problem| %>
+<% @problems.reverse_order.each do |problem| %>
     <div>
-      <h2><%= link_to <%= problem.description %></h2>
-      <div><%= problem.user.name %></div>
-      <div><%= problem.created_at %></div>
-      <div><%= problem.history %></div>
+
+      <h3><%= link_to problem.description, problem_path(problem) %></h3>
+      <ul>
+        <li>Posted by <%= problem.user.name %> on </li> <li> <%= problem.created_at.strftime("%m/%d/%Y"" at ""%I:%M %p") %></li>
+      </ul>
+      <p><%= problem.history.truncate(100) %></p>
     </div>
 <% end %>
 

@@ -1,16 +1,52 @@
-<h1><%= @problem.description %></h1>
-<p><%= @problem.history %></p>
-<p><%= @problem.user.name %></p>
-<p><%= @problem.created_at %></p>
-
-
-<% @notes.each do |note| %>
-    <div>
-      <h2><%= note.description %></h2>
-      <div><%= note.user.name %></div>
-      <div><%= note.created_at %></div>
-      <div><%= note.history %></div>
-    </div>
+<% if current_user = @problem.user %>
+    <!--this needs to address the resolved issue-->
 <% end %>
 
-<%= paginate @notes %>
+<h1>Problem Page</h1>
+<h2><%= @problem.description %></h2>
+<p><%= @problem.history %></p>
+<ul>
+  <li>Posted by <%= @problem.user.name %> on </li> <li> <%= @problem.created_at.strftime("%m/%d/%Y"" at ""%I:%M %p") %></li>
+</ul>
+
+
+
+<h2>Notes in Response</h2>
+
+<% if @problem.notes %>
+    <% @problem.notes.order("created_at").each do |note| %>
+        <div>
+          <h6><%= note.text %></h6>
+          <ul>
+            <li>Posted by <%= note.user %> on </li> <li> <%= note.created_at.strftime("%m/%d/%Y"" at ""%I:%M %p") %></li>
+          </ul>
+        </div>
+    <% end %>
+<% else %>
+    <% if !@notes %>
+        <p>
+          No notes yet.
+        </p>
+    <% end %>
+
+<% end %>
+
+
+<% if user_signed_in? %>
+    <%= form_for([@problem, @problem.notes.build]) do |f| %>
+        <fieldset>
+
+          <legend>Any thoughts?</legend>
+
+          <%= f.label 'Note' %>
+          <%= f.text_area :text %>
+          <%= f.hidden_field :user, :value => current_user %>
+
+
+          <%= button_tag 'Add Note' %>
+
+        </fieldset>
+    <% end %>
+<% else %>
+    <%= link_to 'Log in to leave a note', new_user_session_path %>
+<% end %>

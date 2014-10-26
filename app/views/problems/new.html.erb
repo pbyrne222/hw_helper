@@ -1,2 +1,25 @@
-<h1>Problems#new</h1>
-<p>Find me in app/views/problems/new.html.erb</p>
+<h1>Post a new Problem</h1>
+
+
+<% if user_signed_in? %>
+    <%= form_for @problem do |f| %>
+
+        <fieldset>
+          <legend>Tell us what's going on</legend>
+
+          <%= f.label "Your problem:" %>
+          <%= f.text_field :description %>
+
+          <%= f.label 'What you have tried so far:' %>
+          <%= f.text_area :history %>
+
+          <%= f.hidden_field :resolved, :value => false %>
+
+          <%= button_tag 'Post Problem' %>
+        </fieldset>
+
+    <% end %>
+<% else %>
+    <p><%= link_to 'Log in to post your homework problem.', new_user_session_path %></p>
+
+<% end %>
