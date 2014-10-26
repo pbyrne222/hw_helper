@@ -6,8 +6,10 @@
 #
 
 one:
-  email: mystring
+  name: User one
+  email: one@example.com
 
 
 two:
-  email: mystringgg
+  name: User two
+  email: two@example.com
