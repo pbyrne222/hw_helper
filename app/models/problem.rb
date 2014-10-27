@@ -8,6 +8,7 @@ class Problem < ActiveRecord::Base
 
   paginates_per 5
 
+  after_create :send_email
 
   def send_email
    UserMailer.new_problem(self.id).deliver
