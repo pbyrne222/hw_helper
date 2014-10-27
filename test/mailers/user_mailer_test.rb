@@ -7,10 +7,9 @@ class UserMailerTest < ActionMailer::TestCase
 		problem.user = user
 		problem.save
     mail = UserMailer.new_problem(problem.id)
-    assert_equal "New problem created in Homework Helper", mail.subject
+    assert_equal "Your problem was added to Homework Helper", mail.subject
     assert_equal [user.email], mail.to
     assert_equal ["no-reply@hw_helper.com"], mail.from
-    assert_match "New Problem", mail.body.encoded
   end
 
   test "new_note" do
@@ -24,6 +23,5 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal "A note was added to your problem in Homework Helper", mail.subject
     assert_equal [user.email], mail.to
     assert_equal ["no-reply@hw_helper.com"], mail.from
-    assert_match "New Note", mail.body.encoded
   end
 end
