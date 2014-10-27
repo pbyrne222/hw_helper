@@ -1,24 +1,20 @@
 <h1>Open Problems</h1>
 
 <% if @problems %>
-    <% @problems.reverse_order.each do |problem| %>
-        <% if problem.resolved == false %>
-            <div>
-
-              <h3><%= link_to problem.description, problem_path(problem) %></h3>
-              <ul>
-                <li>Posted by <%= problem.user.name %> on </li> <li> <%= problem.created_at.strftime("%m/%d/%Y"" at ""%I:%M %p") %></li>
-              </ul>
-              <p><%= problem.history.truncate(100) %></p>
-            </div>
-        <% end %>
-    <% end %>
+  <% @problems.reverse_order.each do |problem| %>
+     <% if problem.resolved == false %>
+        <div>
+          <h3><%= link_to problem.description, problem_path(problem) %></h3>
+          <ul>
+            <li>Posted by <%= problem.user.name %> on </li> <li> <%= problem.created_at.strftime("%m/%d/%Y"" at ""%I:%M %p") %></li>
+          </ul>
+          <p><%= problem.history.truncate(100) %></p>
+        </div>
+     <% end %>
+  <% end %>
 <% else %>
     <p> There are no open problems . . . yet! </p>
 <% end %>
-
-
-
 
 
 <%= paginate @problems %>
