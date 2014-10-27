@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
   def new_note(note_id)
     @note = Note.find(note_id)
     @problem = @note.problem
-    create_mail(@note.user, "A note was added to your problem on Homework Helper")
+    create_mail(@problem.user, "A note was added to your problem in Homework Helper")
   end
 
 
@@ -17,6 +17,7 @@ class UserMailer < ActionMailer::Base
 
   def create_mail(user, msg)
     @user = user
+    @url =
     @greeting = "Hello #{@user.name}"
     mail to: @user.email, subject: "msg"
   end

@@ -12,7 +12,6 @@ class Note < ActiveRecord::Base
 		notify_author
 	end
 
-
 private
 
 	def notify_author
@@ -26,9 +25,7 @@ private
   end
 
   def send_email
-    if self.user != self.problem.user
       UserMailer.new_note(self.id).deliver
-    end
   end
 
 end
