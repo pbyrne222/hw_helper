@@ -13,6 +13,8 @@ class ProblemsController < ApplicationController
   def create
     @problem = current_user.problems.build(problem_params)
 
+  
+
     if @problem.save
       redirect_to @problem, success: "Your problem has been posted."
     else
