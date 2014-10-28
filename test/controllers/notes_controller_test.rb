@@ -3,7 +3,7 @@ require 'test_helper'
 class NotesControllerTest < ActionController::TestCase
 
 	def invalid_note_data
-		{ text: "" }
+		{text: "" }
 	end
 
 	def valid_note_data
@@ -16,8 +16,7 @@ class NotesControllerTest < ActionController::TestCase
 
 	context "POST notes#create" do
 		context "when not logged in" do
-			setup { post :create, problem_id: problems(:one).id, note: {} }
-
+			setup { post :create, problem_id: problems(:one).id, text: "hello" }
 			should "redirect to login" do
 				assert_redirected_to new_user_session_path
 			end
@@ -27,10 +26,10 @@ class NotesControllerTest < ActionController::TestCase
 			setup { sign_in @user }
 			context "with invalid data" do
 				setup do
-					post :create, { problem_id: problems(:one).id, note: invalid_note_data }, signed_in_session
+					post :create, { problem_id: problems(:one).id, note: valid_note_data }, signed_in_session
 				end
 
-				should render_template("problems/show")
+				should render_template("problems#show")
 
 				should "instantiate an invalid note object" do
 					assert_invalid_model(:note)
@@ -52,5 +51,4 @@ class NotesControllerTest < ActionController::TestCase
 			end
 		end
 	end
-
 end
